@@ -13,7 +13,7 @@ human.
 
 ## Live demo
 
-TODO: add Vercel URL after deploy.
+**https://retail-assist-six.vercel.app**
 
 ## What it does
 
