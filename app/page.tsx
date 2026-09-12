@@ -10,6 +10,12 @@ export default function Home() {
 
   return (
     <main className="mx-auto flex h-screen max-w-6xl flex-col p-4">
+      <a
+        href="#chat-input"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:rounded focus:bg-white focus:px-3 focus:py-1 focus:ring-2 focus:ring-brand"
+      >
+        Skip to chat input
+      </a>
       <header className="mb-4">
         <h1 className="text-xl font-semibold text-brand-dark">Retail Assist</h1>
         <p className="text-sm text-gray-500">
@@ -17,10 +23,16 @@ export default function Home() {
         </p>
       </header>
       <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 md:grid-cols-3">
-        <section className="min-h-0 rounded-lg bg-gray-100 md:col-span-2">
+        <section
+          className="min-h-0 rounded-lg bg-gray-100 md:col-span-2"
+          aria-label="Chat with Retail Assist"
+        >
           <Chat onMeta={setMeta} />
         </section>
-        <aside className="min-h-0 space-y-4 overflow-y-auto">
+        <aside
+          className="min-h-0 space-y-4 overflow-y-auto"
+          aria-label="Agent insight and sources"
+        >
           {meta ? (
             <>
               <DebugPanel

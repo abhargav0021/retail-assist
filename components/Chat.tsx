@@ -52,7 +52,12 @@ export function Chat({ onMeta }: { onMeta: (meta: LatestMeta | null) => void }) 
         citedDocs: data.citedDocs,
       });
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Something went wrong.");
+      const msg = e instanceof Error ? e.message : "Something went wrong.";
+      setError(
+        msg.includes("ANTHROPIC_API_KEY")
+          ? "The server is missing an Anthropic API key. Add ANTHROPIC_API_KEY to .env.local and restart."
+          : msg,
+      );
     } finally {
       setLoading(false);
     }
