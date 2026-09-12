@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { Chat, type LatestMeta } from "@/components/Chat";
+import { DebugPanel } from "@/components/DebugPanel";
+import { RetrievalPanel } from "@/components/RetrievalPanel";
 
 export default function Home() {
   const [meta, setMeta] = useState<LatestMeta | null>(null);
@@ -19,10 +21,20 @@ export default function Home() {
           <Chat onMeta={setMeta} />
         </section>
         <aside className="min-h-0 space-y-4 overflow-y-auto">
-          {/* Panels added in Task 8. Temporary readout: */}
-          <pre className="rounded bg-white p-3 text-xs ring-1 ring-gray-200">
-            {meta ? JSON.stringify(meta, null, 2) : "No response yet."}
-          </pre>
+          {meta ? (
+            <>
+              <DebugPanel
+                mood={meta.mood}
+                escalate={meta.escalate}
+                escalateReason={meta.escalateReason}
+              />
+              <RetrievalPanel citedDocs={meta.citedDocs} />
+            </>
+          ) : (
+            <div className="rounded-lg bg-white p-3 text-sm text-gray-500 ring-1 ring-gray-200">
+              Ask a question to see the agent&apos;s mood read and the knowledge base it used.
+            </div>
+          )}
         </aside>
       </div>
     </main>
